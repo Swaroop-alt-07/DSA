@@ -1,69 +1,66 @@
 #include <stdio.h>
 #include <stdlib.h>
-# define SIZE 5
+#include<ctype.h>
+# define SIZE 20
 struct stack
 {
-     int top;
-     int data[SIZE];
+    int top;
+    char data[SIZE];
 };
-typedef struct stack STACK;
-void push(STACK *s,int item)
+typedef struct stack stack;
+void push(STACK *s, char item)
 {
-   if(s->top==SIZE-1)
-    printf("\n stack overflow");
-   else{
-    s->top=s->top+1;
-    s->data[s->top]=item;
-   }
+    s->data[++(s->top)=item;
 }
-void pop(STACK *s){
-         if(s->top==-1)
-            printf("\n stack underflow");
-         else{
-            printf("\n the element poped is %i",s->data[s->top]);
-            s->top=s->top-1;
-         }
-         }
-void display(STACK s){
-int i;
-if(s.top==-1)
-    printf("\n the stack is empty");
-else{
-    printf("\n stack contents are \n");
-    for(i=s.top;i>=0;i--)
-        printf("\n %i",s.data[i]);
-}
-}
-int main()
+char pop(STACK *s)
 {
-
-    int ch,item;
-    STACK s;
-    s.top=-1;
-    for(;;)
+    return s->data[(s->top)--];
+}
+int precedence(char symbol)
+{
+    switch(Symbol)
     {
-        printf("\n 1.push\n");
-        printf("\n 2.pop\n");
-        printf("\n 3.display\n");
-        printf("\n 4.exit\n");
-        scanf("%i",&ch);
-        switch(ch)
-        {
-        case 1:
-            printf("read element to be pushed:");
-            scanf("%i",&item);
-            push(&s,item);
-            break;
-        case 2:
-            pop(&s);
-            break;
-        case 3:
-            display(s);
-            break;
-        default:
-            exit(0);
-
+    case '^':
+        return 5;
+    case '*':
+        return 3;
+    case '/':
+        return 3;
+    case '+':
+        return 1;
+    case '-':
+        return 1;
+    }
+}
+void infixtopostfix(STACK *s, char infix[20])
+{
+    int 1=0,j=0;
+    char symbol,postfix[20],temp;
+    for(i=0;infix[i]!=0;i++){
+        symbol=infix[i];
+        if(isalnum(symbol))
+            postfix[j++]=symbol;
+        else{
+            switch(symbol)
+            {
+            case '(':
+                push(&s,symbol);
+                break;
+            case ')':
+                temp=pop(&s);
+                while(temp!='c')
+                {
+                    postfix[j++]=temp;
+                    temp=pop(&s);
+                }
+                break;
+            case '+':
+                if(s->top==-1 ::s->data[s->top]=='c' )
+                    push(&s,symbol);
+                else{
+                    while(precendence)
+                }
+            }
         }
     }
-   return 0;
 }
