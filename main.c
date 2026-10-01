@@ -1,63 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include <math.h>
-#define SIZE 20
-struct stack {
-int top;
-float data[SIZE];
-};
-typedef struct stack Stack;
-void push(Stack *s, float item)
+int gcd(int a,int b)
 {
-    s->data[++(s->top)]=item;
-}
-float pop(Stack *s)
-{
-    return s->data[(s->top)--];
-}
-float compute(float opr1,char symbol,float opr2)
-{
-    switch(symbol)
-    {
-        case '+': return opr1+opr2;
-        case '-': return opr1-opr2;
-        case '*': return opr1*opr2;
-        case '/': return opr1/opr2;
-        case '^': return pow(opr1,opr2);
-    }
-1}
-float Evalpostfix(Stack *s,char postfix[20])
-{
-    int i;
-    char symbol;
-    float opr1,opr2,res;
-    for(i=0;postfix[i]!=0;i++)
-    {
-        symbol=postfix[i];
-        if(isdigit(symbol))
-            push(s,symbol -'0');
-        else
-        {
-            opr2=pop(s);
-            opr1=pop(s);
-            res=compute(opr1,symbol,opr2);
-            push(s,res);
-        }
-
-
-        }
-        return pop(s);
+    if(b==0)
+        return a;
+    return gcd(b,a%b);
 }
 int main()
 {
-   char postfix[20];
-   Stack s;
-   s.top=-1;
-   float ans;
-   printf("\n read Postfix expression \n");
-   scanf("%s",postfix);
-   ans=Evalpostfix(&s,postfix);
-   printf("\n the final result = %f \n",ans);
+   int a,b,ans;
+   printf("\n read 2 numbers :\n");
+   scanf("%i%i",&a,&b);
+   ans=gcd(a,b);
+   printf("\nthe gcd of %i and %i is %i \n",a,b,ans);
    return 0;
 }
